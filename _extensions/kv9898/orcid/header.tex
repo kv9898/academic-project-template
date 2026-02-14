@@ -1,0 +1,14 @@
+% TODO: Add custom LaTeX header directives here
+\usepackage{float, booktabs, siunitx, orcidlink, pdfpages, scrlayer-scrpage}
+\setkomafont{disposition}{\bfseries}
+\providecommand{\keywords}[1]
+{
+  \small	
+  \textbf
+{\textit{Keywords---}} #1
+}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup }
