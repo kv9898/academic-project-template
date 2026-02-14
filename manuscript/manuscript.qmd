@@ -63,3 +63,11 @@ reg_table <- read_rds("outputs/regression_table.rds")
 reg_table
 ```
 
+# Conclusion
+
+Citations can be added in two ways: @barro1983 is cited in the text, it can also be cited in parentheses [@barro1983].
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

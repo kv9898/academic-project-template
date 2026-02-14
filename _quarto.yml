@@ -1,4 +1,4 @@
 project:
   execute-dir: project
-# bibliography: references.bib
+bibliography: extras/references.bib
 csl: extras/apa.csl
