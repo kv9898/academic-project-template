@@ -45,3 +45,13 @@ i_am("manuscript/manuscript.qmd") # helps with relative paths
 ```
 
 YOUR DESCRIPTIVE ANALYSIS GOES HERE. This section should present the main descriptive statistics and visualizations that summarize the data.
+
+@fig-turnout shows the voter turnout by region in the 2016 Brexit referendum.
+
+```{r}
+#| fig-cap: "Voter turnout by region in the 2016 Brexit referendum."
+#| fig-pos: "H"
+#| label: fig-turnout
+plot <- read_rds(here("outputs/turnout_by_region.rds"))
+plot
+```
