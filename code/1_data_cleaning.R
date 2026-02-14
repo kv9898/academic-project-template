@@ -18,7 +18,7 @@ i_am("code/1_data_cleaning.R") # helps with relative paths
 
 # Read in the data ----
 
-brexit_data <- read_csv(here("data_raw/Brexit.csv"))
+brexit_data <- read_csv(here("data_raw/Brexit.csv"))[, -1]
 
 # Data cleaning ----
 
