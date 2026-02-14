@@ -1,6 +1,6 @@
 # Academic Project Template
 
-This template provides a structured framework for academic research projects using R and Quarto. It's designed to promote reproducibility and best practices in academic research by providing:
+This template provides a structured framework for academic research projects using R, Quarto and Git version control. It's designed to promote reproducibility and best practices in academic research by providing:
 
 - **Organized project structure**: Separate directories for raw data, cleaned data, code, manuscripts, and slides
 - **Reproducible environment**: Uses `renv` for R package management to ensure consistent dependencies
