@@ -22,13 +22,10 @@ brexit_data <- read_rds(here("data_clean/Brexit.rds"))
 
 # Descriptive plot ----
 
-(
-  turnout_by_region <- ggplot(brexit_data, aes(x= region, y = turnout)) +
-    geom_boxplot() +
-    labs(title = "Voter Turnout by Region",
-         x = "Region",
-         y = "Voter Turnout (%)") +
-    theme_minimal()
-)
+(turnout_by_region <- ggplot(brexit_data, aes(x = region, y = turnout)) +
+  geom_boxplot() +
+  labs(x = "Region", y = "Voter Turnout (%)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
 
 write_rds(turnout_by_region, here("outputs/turnout_by_region.rds"))
