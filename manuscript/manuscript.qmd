@@ -40,7 +40,7 @@ YOUR INTRODUCTION GOES HERE. The introduction should provide background informat
 
 ```{r}
 library(here)
-library(ggplot2)
+library(tidyverse)
 i_am("manuscript/manuscript.qmd") # helps with relative paths
 ```
 
