@@ -1,0 +1,9 @@
+# Quarto files
+/.quarto/
+**/*.quarto_ipynb
+/.luarc.json
+
+# R files
+.Rproj.user
+.Rhistory
+.Ruserdata
