@@ -55,3 +55,15 @@ YOUR DESCRIPTIVE ANALYSIS GOES HERE. This section should present the main descri
 plot <- read_rds(here("outputs/turnout_by_region.rds"))
 plot
 ```
+
+# Results
+
+@tbl-reg shows the regression results for the main analysis.
+
+```{r}
+#| label: tbl-reg
+#| tbl-cap: "Regression results for the main analysis."
+#| tbl-pos: H
+reg_table <- read_rds("outputs/regression_table.rds")
+reg_table
+```
