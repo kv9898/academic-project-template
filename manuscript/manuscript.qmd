@@ -22,9 +22,9 @@ execute:
 format:
   orcid-pdf:
     number-sections: true
-    include-in-header:
-      - text: |
-          \UseTblrLibrary{booktabs}
+    # include-in-header:
+    #   - text: |
+          #
 # bibliography: references.bib
 # csl: extra/apa.csl
 abstract: |
