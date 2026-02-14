@@ -1,0 +1,45 @@
+---
+title: YOUR LONGER TITLE HERE
+header-includes: |
+  \AtBeginDocument{\title[SHORT TITLE]{YOUR LONGER TITLE HERE}}
+date: last-modified
+date-format: "D MMM YYYY"
+author: YOUR NAME
+format:
+  beamer:
+    theme: Madrid
+link-citations: true
+---
+
+## Plot
+
+```{r}
+library(here)
+library(tidyverse)
+i_am("manuscript/manuscript.qmd") # helps with relative paths
+```
+
+```{r}
+#| fig-width: 6
+#| fig-height: 4
+plot <- read_rds(here("outputs/turnout_by_region.rds"))
+plot
+```
+
+## Results
+
+```{r}
+reg_table <- read_rds("outputs/regression_table.rds")
+reg_table |>
+  # table is too tall for the slide
+  tinytable::theme_latex(resize_width = 0.25, resize_direction = "both")
+```
+
+## Conclusion
+
+You can also use citations in the slides, for example @barro1983.
+
+## References {.unnumbered .allowframebreaks}
+
+::: {#refs}
+:::
