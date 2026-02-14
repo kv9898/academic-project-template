@@ -22,11 +22,6 @@ execute:
 format:
   orcid-pdf:
     number-sections: true
-    # include-in-header:
-    #   - text: |
-          #
-# bibliography: references.bib
-# csl: extra/apa.csl
 abstract: |
   YOUR ABSTRACT GOES HERE. The abstract should be a single paragraph of no more than 250 words that summarizes the main findings and contributions of your manuscript.
 keywords: British Politics, Referendum, Brexit
@@ -67,3 +62,4 @@ plot
 reg_table <- read_rds("outputs/regression_table.rds")
 reg_table
 ```
+
