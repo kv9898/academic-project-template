@@ -1,0 +1,47 @@
+---
+title: YOUR MANUSCRIPT TITLE
+subtitle: YOUR MANUSCRIPT SUBTITLE
+date: last-modified
+date-format: |
+    | DD MMMM YYYY
+authors:
+  - name: YOUR NAME
+    email: your.email@example.com
+    orcid: 0000-0000-0000-0000
+    affiliations:
+      - ref: uni
+    correspondence: true
+affiliations:
+  - id: uni
+    name: Your University Name
+execute:
+  echo: false
+  warning: false
+  error: false
+  message: false
+format:
+  orcid-pdf:
+    number-sections: true
+    include-in-header:
+      - text: |
+          \UseTblrLibrary{booktabs}
+# bibliography: references.bib
+# csl: extra/apa.csl
+abstract: |
+  YOUR ABSTRACT GOES HERE. The abstract should be a single paragraph of no more than 250 words that summarizes the main findings and contributions of your manuscript.
+keywords: British Politics, Referendum, Brexit
+---
+
+# Introduction
+
+YOUR INTRODUCTION GOES HERE. The introduction should provide background information on the topic, state the research question, and outline the structure of the manuscript.
+
+# Descriptive Analysis
+
+```{r}
+library(here)
+library(ggplot2)
+i_am("manuscript/manuscript.qmd") # helps with relative paths
+```
+
+YOUR DESCRIPTIVE ANALYSIS GOES HERE. This section should present the main descriptive statistics and visualizations that summarize the data.
