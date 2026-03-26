@@ -6,7 +6,7 @@
 
 # R Script
 ## Purpose: This script performs linear regression analysis.
-## Inputs: data_clean/Brexit.rds
+## Inputs: data_processed/Brexit.rds
 ## Outputs: outputs/regression_table.rds
 
 # Setup ----
@@ -17,9 +17,9 @@ library(modelsummary)
 
 i_am("code/3_main_analysis.R") # helps with relative paths
 
-# Read in the cleaned data ----
+# Read in the processed data ----
 
-brexit_data <- read_rds(here("data_clean/Brexit.rds"))
+brexit_data <- read_rds(here("data_processed/Brexit.rds"))
 
 # Main analysis ----
 
