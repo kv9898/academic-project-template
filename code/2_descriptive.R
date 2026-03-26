@@ -16,7 +16,7 @@ library(here)
 
 i_am("code/2_descriptive.R") # helps with relative paths
 
-# Read in the cleaned data ----
+# Read in the processed data ----
 
 brexit_data <- read_rds(here("data_processed/Brexit.rds"))
 

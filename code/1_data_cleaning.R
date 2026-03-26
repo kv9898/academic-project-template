@@ -24,6 +24,6 @@ brexit_data <- read_csv(here("data_raw/Brexit.csv"))[, -1]
 
 # ... your data cleaning code here ...
 
-# Save the cleaned data ----
+# Save the processed data ----
 
 write_rds(brexit_data, here("data_processed/Brexit.rds"))
