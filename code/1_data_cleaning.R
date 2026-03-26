@@ -7,7 +7,7 @@
 # R Script
 ## Purpose: This script performs data cleaning and generates the dataset for the formal model evaluation.
 ## Inputs: data_raw/Brexit.csv
-## Outputs: data_clean/Brexit.rds
+## Outputs: data_processed/Brexit.rds
 
 # Setup ----
 
@@ -24,6 +24,6 @@ brexit_data <- read_csv(here("data_raw/Brexit.csv"))[, -1]
 
 # ... your data cleaning code here ...
 
-# Save the cleaned data ----
+# Save the processed data ----
 
-write_rds(brexit_data, here("data_clean/Brexit.rds"))
+write_rds(brexit_data, here("data_processed/Brexit.rds"))

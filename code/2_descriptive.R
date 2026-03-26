@@ -6,7 +6,7 @@
 
 # R Script
 ## Purpose: This script performs descriptive analysis and generates summary statistics for the dataset.
-## Inputs: data_clean/Brexit.rds
+## Inputs: data_processed/Brexit.rds
 ## Outputs: outputs/turnout_by_region.rds
 
 # Setup ----
@@ -16,9 +16,9 @@ library(here)
 
 i_am("code/2_descriptive.R") # helps with relative paths
 
-# Read in the cleaned data ----
+# Read in the processed data ----
 
-brexit_data <- read_rds(here("data_clean/Brexit.rds"))
+brexit_data <- read_rds(here("data_processed/Brexit.rds"))
 
 # Descriptive plot ----
 
