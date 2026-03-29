@@ -1,5 +1,7 @@
 # Academic Project Template
 
+Learn more about the design principles and best practices behind this template: https://rubuky.com/blog/2026-03-26-ReproducibleResearch/
+
 This template provides a structured framework for academic research projects using R, Quarto and Git version control. It's designed to promote reproducibility and best practices in academic research by providing:
 
 - **Organized project structure**: Separate directories for raw data, cleaned data, code, manuscripts, and slides
