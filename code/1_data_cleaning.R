@@ -26,4 +26,5 @@ brexit_data <- read_csv(here("data_raw/Brexit.csv"))[, -1]
 
 # Save the processed data ----
 
+resultcheck::snapshot(brexit_data, "brexit_data.rds") # ensure the processed data is consistent across runs
 write_rds(brexit_data, here("data_processed/Brexit.rds"))
