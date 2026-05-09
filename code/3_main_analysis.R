@@ -29,5 +29,7 @@ resultcheck::snapshot(model, "model")
 # Output the model summary ----
 
 reg_table <- modelsummary(model, stars = TRUE, output = "latex")
-resultcheck::snapshot(reg_table, "reg_table")
+resultcheck::snapshot(reg_table, "reg_table", method = print)
+
+dir.create(here("outputs"), showWarnings = FALSE) # create outputs directory if it doesn't exist
 write_rds(reg_table, here("outputs/regression_table.rds"))
