@@ -28,5 +28,5 @@ brexit_data <- read_rds(here("data_processed/Brexit.rds"))
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)))
 
-resultcheck::snapshot(turnout_by_region, "turnout_by_region.rds") # ensure the plot is consistent across runs
+resultcheck::snapshot(turnout_by_region, "turnout_by_region") # ensure the plot is consistent across runs
 write_rds(turnout_by_region, here("outputs/turnout_by_region.rds"))
