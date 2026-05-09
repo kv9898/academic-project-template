@@ -10,3 +10,6 @@
 
 # Output files
 *.pdf
+
+# AI generated files
+.intent-engine

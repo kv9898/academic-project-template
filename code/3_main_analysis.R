@@ -24,8 +24,12 @@ brexit_data <- read_rds(here("data_processed/Brexit.rds"))
 # Main analysis ----
 
 model <- lm(leave ~ turnout + income + noqual, data = brexit_data)
+resultcheck::snapshot(model, "model")
 
 # Output the model summary ----
 
 reg_table <- modelsummary(model, stars = TRUE, output = "latex")
+resultcheck::snapshot(reg_table, "reg_table", method = print)
+
+dir.create(here("outputs"), showWarnings = FALSE) # create outputs directory if it doesn't exist
 write_rds(reg_table, here("outputs/regression_table.rds"))

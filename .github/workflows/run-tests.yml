@@ -1,0 +1,107 @@
+﻿name: R Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }} (R-${{ matrix.config.r }})
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: windows-latest, r: '4.6.0'}
+          - {os: ubuntu-latest, r: '4.6.0'}
+          - {os: macos-latest, r: '4.6.0'}
+    
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
+          lfs: true
+      
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          use-public-rspm: true
+      
+      - name: Setup system dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev \
+            libfontconfig1-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
+            libfreetype6-dev \
+            libpng-dev \
+            libtiff5-dev \
+            libjpeg-dev
+
+      - name: Setup system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          set -euxo pipefail
+
+          # 1) Ensure toolchain & libs
+          brew update
+          brew install pkg-config libpng cairo freetype harfbuzz fribidi
+
+          # 2) Resolve paths (handles both Apple Silicon / Intel)
+          BREW_PREFIX="$(brew --prefix)"
+          echo "BREW_PREFIX=${BREW_PREFIX}"
+
+          # 3) Make sure SDKROOT is set (R/clang sometimes needs it on GitHub runners)
+          echo "SDKROOT=$(xcrun --sdk macosx --show-sdk-path)" >> $GITHUB_ENV
+
+          # 4) Help pkg-config & libpng be discoverable during restore/build
+          echo "PATH=${BREW_PREFIX}/bin:${PATH}" >> $GITHUB_ENV
+          echo "PKG_CONFIG_PATH=${BREW_PREFIX}/lib/pkgconfig:$(brew --prefix libpng)/lib/pkgconfig" >> $GITHUB_ENV
+
+          # 5) Create ~/.R/Makevars and feed the compiler/linker *both* generic and libpng-specific flags
+          mkdir -p ~/.R
+
+          PNG_CFLAGS="$(pkg-config --cflags libpng)"   # e.g. -I/opt/homebrew/opt/libpng/include/libpng16
+          PNG_LIBS="$(pkg-config --libs libpng)"       # e.g. -L/opt/homebrew/opt/libpng/lib -lpng16
+
+          {
+            echo "## --- Added by CI to find Homebrew libs ---"
+            # Generic Homebrew include/lib for lots of packages (cairo, freetype, etc.)
+            echo "CPPFLAGS += -I${BREW_PREFIX}/include"
+            echo "LDFLAGS  += -L${BREW_PREFIX}/lib -Wl,-rpath,${BREW_PREFIX}/lib"
+
+            # libpng-specific flags (ensures link line gets -L... -lpng16, not bare -lpng)
+            echo "PKG_CPPFLAGS += ${PNG_CFLAGS}"
+            echo "PKG_LIBS     += ${PNG_LIBS}"
+          } >> ~/.R/Makevars
+      
+      - name: Restore renv packages
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 2
+
+      - name: Run tests
+        run: |
+          Rscript -e "testthat::test_dir('tests/testthat')"
+      
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.config.os }}-r${{ matrix.config.r }}
+          path: tests/testthat/*.Rout*
