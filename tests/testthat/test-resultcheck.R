@@ -2,7 +2,6 @@ library(testthat)
 library(resultcheck)
 
 sandbox <- setup_sandbox(c("data_raw"))
-on.exit(cleanup_sandbox(sandbox), add = TRUE)
 
 test_that("1_data_cleaning.R produces stable results", {
   expect_true(run_in_sandbox("code/1_data_cleaning.R", sandbox))
@@ -15,7 +14,7 @@ test_that("1_data_cleaning.R produces stable results", {
 })
 
 test_that("2_descriptive.R produces stable results", {
-  run_in_sandbox("code/2_descriptive.R", sandbox)
+  expect_true(run_in_sandbox("code/2_descriptive.R", sandbox))
 
   # Verify output files were written.
   expect_true(
@@ -25,7 +24,7 @@ test_that("2_descriptive.R produces stable results", {
 })
 
 test_that("3_main_analysis.R produces stable results", {
-  run_in_sandbox("code/3_main_analysis.R", sandbox)
+  expect_true(run_in_sandbox("code/3_main_analysis.R", sandbox))
 
   # Verify output files were written.
   expect_true(
@@ -33,3 +32,5 @@ test_that("3_main_analysis.R produces stable results", {
     info = "regression_table.rds not found"
   )
 })
+
+on.exit(cleanup_sandbox(sandbox), add = TRUE)
