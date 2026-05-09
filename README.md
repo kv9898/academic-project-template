@@ -8,6 +8,7 @@ This template provides a structured framework for academic research projects usi
 - **Reproducible environment**: Uses `renv` for R package management to ensure consistent dependencies
 - **Publication-ready outputs**: Quarto-based workflow for generating manuscripts and presentation slides
 - **Version control ready**: Pre-configured `.gitignore` and directory structure optimized for Git
+- **Result stability checking**: Uses `testthat` + `resultcheck` to snapshot and verify intermediate results, ensuring reproducibility
 
 This template is ideal for researchers, graduate students, and academics who want to maintain reproducible workflows and share their research effectively.
 
